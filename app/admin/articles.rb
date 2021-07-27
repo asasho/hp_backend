@@ -5,16 +5,19 @@ ActiveAdmin.register Article do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :category
+  permit_params :thumbnail, :title, :description, :category
   
   filter :category, :as => :select, :collection => [["プレスリリース", 0], ["メディア", 1], ["その他", 2]]
     
   
   show do
     attributes_table do
-      row(:title)
-      row(:description)
-      row(:category) do |article|
+      row "トップ画像", :thumbnail do |article|
+        image_tag url_for(article.thumbnail)
+      end
+      row "タイトル", :title
+      row "内容", :description
+      row "カテゴリー", :category do |article|
       if article.category == 0
          "プレスリリース"
       elsif article.category == 1
@@ -23,18 +26,19 @@ ActiveAdmin.register Article do
          "その他"
       end
     end
-      row(:created_at)
-      row(:updated_at)
+      row "作成日", :created_at
+      row "更新日", :updated_at
     end
   end
   
   index do
     selectable_column
-    column(:id)
-    
-    column(:title)
-    
-    column(:category) do |article|
+    column "ID", :id
+    column "トップ画像", :thumbnail do |article|
+      image_tag url_for(article.thumbnail)
+    end
+    column "タイトル", :title
+    column "カテゴリー", :category do |article|
       if article.category == 0
          "プレスリリース"
       elsif article.category == 1
@@ -44,11 +48,10 @@ ActiveAdmin.register Article do
       end
     end
       
-    column(:created_at)
-    column(:updated_at)
+    column "作成日", :created_at
+    column "更新日", :updated_at
     actions
   end
-
   #
   # or
   #
@@ -58,13 +61,11 @@ ActiveAdmin.register Article do
   #   permitted
   # end
   form do |f|
-    f.inputs 'Article' do
-      f.input :image, :as => :file, :hint => f.object.new_record? ? "" : f.template.image_tag(f.object.image.url(:thumb))
-      f.input :title
-      f.input :description, as: :quill_editor
-      
-      f.input :category, as: :select, collection:  {"プレスリリース": 1, "メディア": 2, "その他": 3}
-        
+    f.inputs 'Articles' do
+      f.input "トップ画像", :thumbnail, :as => :file
+      f.input "タイトル", :title
+      f.input "内容", :description, as: :quill_editor
+      f.input "カテゴリー", :category, as: :select, collection:  {"プレスリリース": 0, "メディア": 1, "その他": 2}
     end
     f.actions
   end

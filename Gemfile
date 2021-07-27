@@ -33,7 +33,7 @@ gem 'activeadmin_quill_editor'
 gem 'enum_help'
 gem 'rails-i18n'
 gem 'devise-i18n'
-gem 'paperclip', '~> 4.1'
+
 
 gem 'aws-sdk-s3', require: false
 
