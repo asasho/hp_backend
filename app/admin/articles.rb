@@ -61,11 +61,11 @@ ActiveAdmin.register Article do
   #   permitted
   # end
   form do |f|
-    f.inputs 'Articles' do
-      f.input "トップ画像", :thumbnail, :as => :file
-      f.input "タイトル", :title
-      f.input "内容", :description, as: :quill_editor
-      f.input "カテゴリー", :category, as: :select, collection:  {"プレスリリース": 0, "メディア": 1, "その他": 2}
+    f.inputs do
+      f.input  :thumbnail, :as => :file
+      f.input  :title
+      f.input  :description, as: :quill_editor
+      f.input  :category, as: :select, collection:  {"プレスリリース": 0, "メディア": 1, "その他": 2}
     end
     f.actions
   end

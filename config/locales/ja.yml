@@ -1,10 +1,4 @@
 ja:
-  activerecord:
-    models:
-      admin_user: "管理者"
-      comment: "コメント"
-      articles: "ニュース"
-    attributes:
       admin_user:
         id: "登録番号"
         email: "メールアドレス"
