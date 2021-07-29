@@ -1,5 +1,5 @@
 class AddFileUploadToArticles < ActiveRecord::Migration[6.0]
   def change
-    add_column :articles, :file_upload, :image
+    add_column :articles, :file_upload, :string
   end
 end
