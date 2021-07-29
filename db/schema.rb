@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_25_155809) do
+ActiveRecord::Schema.define(version: 2021_07_28_151332) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_07_25_155809) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.integer "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "file_upload_file_name"
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_07_25_155809) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.integer "category"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
