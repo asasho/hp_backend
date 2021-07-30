@@ -3,6 +3,8 @@ class Article < ApplicationRecord
     
    has_one_attached :thumbnail
    
+   enum category: { プレスリリース: 0, メディア: 1, その他: 2 }
+   
    
    def image_url
        thumbnail.attached? ? url_for(thumbnail) : nil
