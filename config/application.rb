@@ -13,6 +13,15 @@ module ShantApp
     
     config.time_zone = 'Tokyo'
     config.i18n.default_locale = :ja
+    
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*"
+        resource "*",
+          headers: :any,
+          methods: [:get, :post, :options, :head]
+      end
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
