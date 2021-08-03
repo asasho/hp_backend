@@ -18,14 +18,8 @@ ActiveAdmin.register Article do
       row "タイトル", :title
       row "内容", :description
       row "カテゴリー", :category do |article|
-      if article.category == 0
-         "プレスリリース"
-      elsif article.category == 1
-         "メディア"
-      else 
-         "その他"
+        article.category
       end
-    end
       row "作成日", :created_at
       row "更新日", :updated_at
     end
@@ -39,13 +33,7 @@ ActiveAdmin.register Article do
     end
     column "タイトル", :title
     column "カテゴリー", :category do |article|
-      if article.category == 0
-         "プレスリリース"
-      elsif article.category == 1
-         "メディア"
-      else 
-         "その他"
-      end
+      article.category
     end
       
     column "作成日", :created_at
@@ -65,7 +53,7 @@ ActiveAdmin.register Article do
       f.input  :thumbnail, :as => :file
       f.input  :title
       f.input  :description, as: :quill_editor
-      f.input  :category, as: :select, collection:  {"プレスリリース": 0, "メディア": 1, "その他": 2}
+      f.input  :category, as: :select, collection:Article.categories.keys
     end
     f.actions
   end
